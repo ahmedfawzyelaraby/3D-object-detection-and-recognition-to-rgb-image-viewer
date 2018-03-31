@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>kinect_yolo</name>
+  <name>kinect_viewer</name>
   <version>0.1.0</version>
   <description>The kinect_viewer package</description>
   <maintainer email="ahmedfawzyelaraby@gmail.com">Dominic Jud</maintainer>
@@ -17,4 +17,6 @@
 
   <build_depend>message_generation</build_depend>
   <exec_depend>message_runtime</exec_depend>
+
+  <build_depend>kinect_yolo</build_depend>
 </package>
