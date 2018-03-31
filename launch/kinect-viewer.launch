@@ -1,0 +1,11 @@
+<launch>
+	<arg name="rgb_image_topic" default="/kinect2/hd/image_color" />
+	<arg name="ir_image_topic" default="/kinect2/sd/image_ir" />
+	<arg name="detection_message_topic" default="/kinect_yolo/detections_and_depth" />
+
+	<node name="kinect_viewer" pkg="kinect_viewer" type="kinect_viewer" output="screen">
+		<param name="node_rgb_image_topic" type="str" value="$(arg rgb_image_topic)" />
+		<param name="node_ir_image_topic" type="str" value="$(arg ir_image_topic)" />
+		<param name="node_detection_message_topic" type="str" value="$(arg detection_message_topic)" />
+	</node>
+</launch>
