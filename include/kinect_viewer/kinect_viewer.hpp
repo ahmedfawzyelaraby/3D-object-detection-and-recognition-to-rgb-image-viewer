@@ -38,6 +38,13 @@ namespace kinect_viewer {
 			std::vector<unsigned int> DetectionsW;
 			std::vector<unsigned int> DetectionsH;
 			std::vector<std::string> DetectionsN;
+			std::vector<unsigned int> DetectionsR;
+			std::vector<unsigned int> DetectionsG;
+			std::vector<unsigned int> DetectionsB;
 			bool Light = true;
+			const int ClassNameXShift = 5;
+			const int ClassNameYShift = 15;
+			const int DepthXShift = 5;
+			const int DepthYShift = 40;
 	};
 }

@@ -36,6 +36,9 @@ void kinectViewer::DetectionMessageCallback(const kinect_yolo::DepthAndDetection
 	DetectionsW = DetectionMessage.DetectionsWidth;
 	DetectionsH = DetectionMessage.DetectionsHeight;
 	DetectionsN = DetectionMessage.DetectionsName;
+	DetectionsR = DetectionMessage.DetectionsRColor;
+	DetectionsG = DetectionMessage.DetectionsGColor;
+	DetectionsB = DetectionMessage.DetectionsBColor;
 
 	if (Light != DetectionMessage.Light)
 	{
@@ -61,9 +64,9 @@ void kinectViewer::DetectionImageCallback(const sensor_msgs::Image& DetectionIma
 	cv::Mat TmpImage = DetectionCVImage->image.clone();
 	for (int iterator = 0; iterator < DepthOfDetections.size(); iterator++)
 	{
-		cv::rectangle(TmpImage, cv::Rect(DetectionsX[iterator], DetectionsY[iterator], DetectionsW[iterator], DetectionsH[iterator]), cv::Scalar(255, 0, 0), 2);
-		cv::putText(TmpImage, cv::String(DetectionsN[iterator]), cv::Point2f(DetectionsX[iterator], DetectionsY[iterator]), cv::FONT_HERSHEY_SIMPLEX, 0.6, cv::Scalar(0,0,255), 2);
-		cv::putText(TmpImage, cv::String(std::to_string(DepthOfDetections[iterator])), cv::Point(DetectionsX[iterator], DetectionsY[iterator] + DetectionsH[iterator]), cv::FONT_HERSHEY_SIMPLEX, 0.6, cv::Scalar(0,0,255), 2);
+		cv::rectangle(TmpImage, cv::Rect(DetectionsX[iterator], DetectionsY[iterator], DetectionsW[iterator], DetectionsH[iterator]), cv::Scalar(DetectionsB[iterator], DetectionsG[iterator], DetectionsR[iterator]), 2);
+		cv::putText(TmpImage, cv::String(DetectionsN[iterator]), cv::Point2f(DetectionsX[iterator] + ClassNameXShift, DetectionsY[iterator] + ClassNameYShift), cv::FONT_HERSHEY_SIMPLEX, 0.6, cv::Scalar(DetectionsB[iterator], DetectionsG[iterator], DetectionsR[iterator]), 2);
+		cv::putText(TmpImage, cv::String(std::to_string(DepthOfDetections[iterator])), cv::Point2f(DetectionsX[iterator] + DepthXShift, DetectionsY[iterator] + DepthYShift), cv::FONT_HERSHEY_SIMPLEX, 0.6, cv::Scalar(DetectionsB[iterator], DetectionsG[iterator], DetectionsR[iterator]), 2);
 	}
 	cv::imshow(DetectionImageWindowName, TmpImage);
 	cv::waitKey(1);
